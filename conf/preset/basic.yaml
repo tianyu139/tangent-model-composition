@@ -1,0 +1,8 @@
+# @package _global_
+optim: 'sgd'
+loss: 'ce'
+lr: 1e-2
+wd: 1e-4
+pretrained: True
+
+save_epochs: 999

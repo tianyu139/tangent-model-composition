@@ -1,0 +1,45 @@
+name: null
+arch: 'resnet50'
+dataset: 'caltech256'
+n_tasks: 1
+task_split: 'class'
+
+bs: 32
+loss: 'mse'
+epochs: 50
+optim: 'adam'
+sched_type: 'step'
+steps: "25;40"
+lr: 1e-4
+wd: 1e-5
+reg: l2
+lr_decay: 0.1
+momentum: 0.9
+nesterov: False
+
+num_classes: -1
+pretrained: True
+seed: 1
+mse_weight: 15
+val_freq: 5
+save_epochs: -1
+test_mode: False
+
+tangent_unfreeze_layer: 0
+
+defaults:
+    - _self_
+    - trainer: tangent
+
+hydra:
+  run:
+      dir: outputs/${name}/${hydra.job.override_dirname}
+  sweep:
+      dir: outputs_multi/${name}-${now:%Y-%m-%d}
+      subdir: ${hydra.job.override_dirname}
+  job:
+    config:
+      # configuration for the ${hydra.job.override_dirname} runtime variable
+      override_dirname:
+        exclude_keys: ['name']
+

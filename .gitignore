@@ -1,0 +1,10 @@
+*.pt
+*.pt
+outputs/
+*tar
+__pycache__/
+data/
+*.pyc
+outputs_*/
+.ipynb_checkpoints/
+script.sh
