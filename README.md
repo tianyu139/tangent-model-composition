@@ -28,10 +28,16 @@ bash setup/setup_oxfordpets.sh
 Our results for the Class Incremental (Class-IL) setting and Data Incremental (Data-IL) can be 
 reproduced using 
 ```
-bash scripts/compose.sh`
+bash scripts/compose.sh
 ```
 and changing the variables appropriately.
 
+For composition tasks on Tangent Transformers, an example script can be found in
+```
+bash scripts/compose_vit.sh
+```
+which can be adapted to one's needs. To obtain the best hyperparameters for each dataset, please refer
+to Appendix A of the [original paper](https://arxiv.org/abs/2307.08122)
 
 
 If you find this useful for your work, please consider citing
@@ -44,11 +50,12 @@ If you find this useful for your work, please consider citing
   year={2023}
 }
 
-@article{liu2024tangent,
-  title={Tangent transformers for composition, privacy and removal},
+@inproceedings{liu2024tangent,
+  title={Tangent Transformers for Composition, Privacy and Removal},
   author={Liu, Tian Yu and Golatkar, Aditya and Soatto, Stefano},
-  journal={arXiv preprint arXiv:2307.08122},
-  year={2024}
+  journal={The Twelfth International Conference on Learning Representations},
+  year={2024},
+  url={https://arxiv.org/abs/2307.08122}
 }
 ```
 
