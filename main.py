@@ -34,6 +34,8 @@ def main(args: DictConfig):
     cudnn.benchmark = True
 
     trainset, testset = get_dataset(args.dataset, root=os.path.join(get_original_cwd(), 'data'), n_tasks=args.n_tasks, task_split=args.task_split)
+    if not args.augment:
+        trainset.dataset.transform = testset.transform
     args.num_classes = testset.num_classes
 
     loader_args = {'num_workers': 8, 'pin_memory': False}

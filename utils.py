@@ -89,13 +89,30 @@ def thaw(args, m, mode='regular'):
             p.requires_grad = True
         elif mode == 'tangent':
             if 'linear' in k:
-                if 'layer' in k:
-                    if int(k[5]) >= args.tangent_unfreeze_layer:
+                if 'vit' in args.arch:
+                    # VIT Logic
+                    if 'blocks' in k:
+                        block = int(k.split('.')[1])
+                        if block >= args.tangent_unfreeze_layer:
+                            p.requires_grad = True
+                    elif k.startswith('norm') or k.startswith('head'):
                         p.requires_grad = True
-                elif 'fc' in k:
-                    p.requires_grad = True
+                    elif 'cls' in k:
+                        p.requires_grad = True
+                    else:
+                        print(k)
+                        raise Exception("No such param")
+
                 else:
-                    raise Exception("No such param")
+                    # ResNet logic
+                    if 'layer' in k:
+                        if int(k[5]) >= args.tangent_unfreeze_layer:
+                            p.requires_grad = True
+                    elif 'fc' in k:
+                        p.requires_grad = True
+                    else:
+                        print(k)
+                        raise Exception("No such param")
         else:
             raise Exception(f"No such mode - {mode}")
 

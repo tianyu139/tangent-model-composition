@@ -16,6 +16,7 @@ reg: l2
 lr_decay: 0.1
 momentum: 0.9
 nesterov: False
+augment: True
 
 num_classes: -1
 pretrained: True
@@ -26,6 +27,7 @@ save_epochs: -1
 test_mode: False
 
 tangent_unfreeze_layer: 0
+replace_cls_token: False
 
 defaults:
     - _self_
